@@ -13,6 +13,8 @@ use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\interesting\InterestRoomInterface;
+use Drupal\rethinkdb\Entity\AbstractRethinkDbEntity;
+use Drupal\rethinkdb_websocket\Controller\RethinkDBMessage;
 use Drupal\user\UserInterface;
 
 /**
@@ -27,7 +29,7 @@ use Drupal\user\UserInterface;
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
  *     "list_builder" = "Drupal\interesting\InterestRoomListBuilder",
  *     "views_data" = "Drupal\interesting\Entity\InterestRoomViewsData",
- *
+ *     "storage" = "Drupal\rethinkdb\RethinkStorage",
  *     "form" = {
  *       "default" = "Drupal\interesting\Entity\Form\InterestRoomForm",
  *       "add" = "Drupal\interesting\Entity\Form\InterestRoomForm",
@@ -38,11 +40,7 @@ use Drupal\user\UserInterface;
  *   },
  *   base_table = "interest_room",
  *   admin_permission = "administer InterestRoom entity",
- *   entity_keys = {
- *     "id" = "id",
- *     "label" = "name",
- *     "uuid" = "uuid"
- *   },
+ *   entity_keys = {},
  *   links = {
  *     "canonical" = "/admin/interest_room/{interest_room}",
  *     "edit-form" = "/admin/interest_room/{interest_room}/edit",
@@ -50,7 +48,7 @@ use Drupal\user\UserInterface;
  *   }
  * )
  */
-class InterestRoom extends ContentEntityBase implements InterestRoomInterface {
+class InterestRoom extends AbstractRethinkDbEntity {
 
   use EntityChangedTrait;
 
