@@ -1,11 +1,3 @@
-intersting.add_room:
-  path: 'interesting/add'
-  defaults:
-    _form: '\Drupal\interesting\Form\AddRoom'
-    _title: 'Create room'
-  requirements:
-    _permission: 'access content'
-
 # InterestRoom routing definition
 entity.interest_room.canonical:
   path: '/admin/interest_room/{interest_room}'

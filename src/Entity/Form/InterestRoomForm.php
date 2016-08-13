@@ -25,12 +25,56 @@ class InterestRoomForm extends ContentEntityForm {
     /* @var $entity \Drupal\interesting\Entity\InterestRoom */
     $entity = $this->entity;
 
-    $form['langcode'] = array(
-      '#title' => $this->t('Language'),
-      '#type' => 'language_select',
-      '#default_value' => $entity->getUntranslated()->language()->getId(),
-      '#languages' => Language::STATE_ALL,
-    );
+    return [
+      'name' => [
+        '#type' => 'textfield',
+        '#title' => $this->t('Name'),
+        '#required' => TRUE,
+      ],
+      'range' => [
+        '#type' => 'textfield',
+        '#title' => $this->t('Range'),
+        '#description' => $this->t('Define the range in which the room will be available. Format: 0.5KM, 100M'),
+        '#required' => TRUE,
+      ],
+      'find_address' => [
+        '#type' => 'checkbox',
+        '#title' => t('Find geolocation from address'),
+      ],
+      'address' => [
+        '#type' => 'fieldset',
+        'location' => [
+          '#type' => 'textfield',
+          '#title' => $this->t('Title'),
+        ],
+        'search' => [
+          '#type' => 'button',
+          '#value' => $this->t('Search'),
+        ],
+        '#states' => [
+          'visible' => [
+            ':input[name="find_address"]' => ['checked' => TRUE],
+          ],
+        ],
+      ],
+      'location' => [
+        '#type' => 'geofield_latlon',
+        '#required' => TRUE,
+        '#title' => $this->t('Geo location'),
+        '#default_value' => '',
+        '#geolocation' => 1,
+      ],
+      'actions' => [
+        '#type' => 'actions',
+        'submit' => [
+          '#type' => 'submit',
+          '#value' => $this->t('Send'),
+        ],
+      ],
+      '#attached' => [
+        'library' => ['interesting/interesting.geolocation'],
+      ],
+    ];
 
     return $form;
   }
