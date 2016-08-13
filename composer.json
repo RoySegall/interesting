@@ -1,0 +1,14 @@
+{
+  "name": "drupal/interesting",
+  "type": "drupal-module",
+  "description": "Set up chat room for any usage",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "http://drupal.org/project/interesting",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "http://drupal.org/project/issues/interesting",
+    "source": "http://cgit.drupalcode.org/interesting"
+  },
+  "require": { }
+}

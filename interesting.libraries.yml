@@ -1,0 +1,4 @@
+interesting.geolocation:
+  version: 1.x
+  js:
+    js/interesting.js: {}

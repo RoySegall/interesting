@@ -1,0 +1,8 @@
+name: Interesting
+type: module
+description: Set up chat room for any usage
+core: 8.x
+package: Interesting
+dependecies:
+  - geofield
+  - rethinkdb
