@@ -18,7 +18,9 @@ use Drupal\Core\Url;
  * @ingroup interesting
  */
 class InterestRoomListBuilder extends EntityListBuilder {
+
   use LinkGeneratorTrait;
+
   /**
    * {@inheritdoc}
    */

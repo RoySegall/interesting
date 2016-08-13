@@ -8,6 +8,7 @@
 namespace Drupal\interesting\Entity\Form;
 
 use Drupal\Core\Entity\ContentEntityForm;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\Language;
 
@@ -25,7 +26,7 @@ class InterestRoomForm extends ContentEntityForm {
     /* @var $entity \Drupal\interesting\Entity\InterestRoom */
     $entity = $this->entity;
 
-    return [
+    $form =  [
       'name' => [
         '#type' => 'textfield',
         '#title' => $this->t('Name'),
@@ -76,17 +77,46 @@ class InterestRoomForm extends ContentEntityForm {
       ],
     ];
 
+    $this->actions($form, $form_state);
+
     return $form;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function submit(array $form, FormStateInterface $form_state) {
-    // Build the entity object from the submitted values.
-    $entity = parent::submit($form, $form_state);
+  public function copyFormValuesToEntity(EntityInterface $entity, array $form, FormStateInterface $form_state) {
+    $values = $form_state->getValues();
+    $entity->name = $values['name'];
+    $entity->range = $values['range'];
+    $entity->location = [
+      'lat' => $values['location']['lat'],
+      'lon' => $values['location']['lon'],
+    ];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function validateForm(array &$form, FormStateInterface $form_state) {
+    $entity = $this->buildEntity($form, $form_state);
+
+    $entity->validate();
+
+    // The entity was validated.
+    $entity->setValidationRequired(FALSE);
+    $form_state->setTemporaryValue('entity_validated', TRUE);
 
     return $entity;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function submitForm(array &$form, FormStateInterface $form_state) {
+    parent::submitForm($form, $form_state);
+    $this->entity->save();
+    $form_state->setRedirect('entity.interest_room.collection');
   }
 
   /**
