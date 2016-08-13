@@ -1,0 +1,5 @@
+# Interest room menu items definition
+entity.interest_room.collection:
+  title: 'Interest room list'
+  route_name: entity.interest_room.collection
+  description: 'List Interest room entities'

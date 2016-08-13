@@ -1,0 +1,15 @@
+add interest room entities:
+  title: 'Create new Interest room entities'
+
+administer interest room entities:
+  title: 'Administer Interest room entities'
+  description: 'Allow to access the administration form to configure Interest room entities.'
+
+delete interest room entities:
+  title: 'Delete Interest room entities'
+
+edit interest room entities:
+  title: 'Edit Interest room entities'
+
+view interest room entities:
+  title: 'View Interest room entities'

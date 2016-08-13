@@ -1,0 +1,22 @@
+# Interest room routing definition
+entity.interest_room.canonical:
+  route_name: entity.interest_room.canonical
+  base_route: entity.interest_room.canonical
+  title: 'View'
+
+interesting.admin:
+  title: 'Intersting'
+  route_name: entity.interest_room.collection
+  base_route: system.admin_content
+
+entity.interest_room.edit_form:
+  route_name: entity.interest_room.edit_form
+  base_route: entity.interest_room.canonical
+  title: Edit
+
+entity.interest_room.delete_form:
+  route_name:  entity.interest_room.delete_form
+  base_route:  entity.interest_room.canonical
+  title: Delete
+  weight: 10
+

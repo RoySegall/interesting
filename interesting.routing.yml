@@ -5,3 +5,44 @@ intersting.add_room:
     _title: 'Create room'
   requirements:
     _permission: 'access content'
+
+# InterestRoom routing definition
+entity.interest_room.canonical:
+  path: '/admin/interest_room/{interest_room}'
+  defaults:
+    _entity_view: 'interest_room'
+    _title: 'Interest room'
+  requirements:
+    _entity_access: 'interest_room.view'
+
+entity.interest_room.collection:
+  path: '/admin/content/interest_room'
+  defaults:
+    _entity_list: 'interest_room'
+    _title: 'Interest room list'
+  requirements:
+    _permission: 'view interest room entities'
+
+entity.interest_room.add_form:
+  path: '/admin/interest_room/add'
+  defaults:
+    _entity_form: interest_room.add
+    _title: 'Add Interest room'
+  requirements:
+    _permission: 'add interest room entities'
+
+entity.interest_room.edit_form:
+  path: '/admin/interest_room/{interest_room}/edit'
+  defaults:
+    _entity_form: interest_room.edit
+    _title: 'Edit Interest room'
+  requirements:
+    _permission: 'edit interest room entities'
+
+entity.interest_room.delete_form:
+  path: '/admin/interest_room/{interest_room}/delete'
+  defaults:
+    _entity_form: interest_room.delete
+    _title: 'Delete Interest room'
+  requirements:
+    _permission: 'delete interest room entities'
