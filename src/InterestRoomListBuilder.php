@@ -30,6 +30,12 @@ class InterestRoomListBuilder extends EntityListBuilder {
     return $header + parent::buildHeader();
   }
 
+  public function load() {
+    // todo - fix rethink DB to just return ids.
+    $entity = $this->getEntityIds();
+    return $this->storage->loadMultiple(array_keys($entity));
+  }
+
   /**
    * {@inheritdoc}
    */
@@ -37,7 +43,7 @@ class InterestRoomListBuilder extends EntityListBuilder {
     /* @var $entity \Drupal\interesting\Entity\InterestRoom */
     $row['id'] = $entity->id();
     $row['name'] = $this->l(
-      $this->getLabel($entity),
+      $entity->name,
       new Url(
         'entity.interest_room.edit_form', array(
           'interest_room' => $entity->id(),
