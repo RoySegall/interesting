@@ -26,17 +26,24 @@ class InterestRoomForm extends ContentEntityForm {
     /* @var $entity \Drupal\interesting\Entity\InterestRoom */
     $entity = $this->entity;
 
+    $location = ['lat' => '', 'lon' => ''];
+    if (!empty($entity->values['location'])) {
+      $location = $entity->values['location']->getArrayCopy();
+    }
+
     $form =  [
       'name' => [
         '#type' => 'textfield',
         '#title' => $this->t('Name'),
         '#required' => TRUE,
+        '#default_value' => !empty($entity->values['name']) ? $entity->values['name'] : '',
       ],
       'range' => [
         '#type' => 'textfield',
         '#title' => $this->t('Range'),
         '#description' => $this->t('Define the range in which the room will be available. Format: 0.5KM, 100M'),
         '#required' => TRUE,
+        '#default_value' => !empty($entity->values['range']) ? $entity->values['range'] : '',
       ],
       'find_address' => [
         '#type' => 'checkbox',
@@ -62,7 +69,7 @@ class InterestRoomForm extends ContentEntityForm {
         '#type' => 'geofield_latlon',
         '#required' => TRUE,
         '#title' => $this->t('Geo location'),
-        '#default_value' => '',
+        '#default_value' => $location,
         '#geolocation' => 1,
       ],
       'actions' => [
