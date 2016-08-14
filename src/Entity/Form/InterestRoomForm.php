@@ -10,7 +10,6 @@ namespace Drupal\interesting\Entity\Form;
 use Drupal\Core\Entity\ContentEntityForm;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Language\Language;
 
 /**
  * Form controller for Interest room edit forms.
@@ -31,7 +30,7 @@ class InterestRoomForm extends ContentEntityForm {
       $location = $entity->values['location']->getArrayCopy();
     }
 
-    $form =  [
+    $form = [
       'name' => [
         '#type' => 'textfield',
         '#title' => $this->t('Name'),
@@ -51,6 +50,7 @@ class InterestRoomForm extends ContentEntityForm {
       ],
       'address' => [
         '#type' => 'fieldset',
+        '#title' => $this->t('Search address geolocation'),
         'location' => [
           '#type' => 'textfield',
           '#title' => $this->t('Title'),
@@ -83,6 +83,18 @@ class InterestRoomForm extends ContentEntityForm {
         'library' => ['interesting/interesting.geolocation'],
       ],
     ];
+
+    // Adding the address information.
+    if ($location['lat'] && $location['lon']) {
+      $address = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' . $location['lat'] . ',' . $location['lon'] . '&sensor=true';
+      $content = \Drupal::httpClient()->get($address)->getBody()->getContents();
+
+      $params = [
+        '@address' => \GuzzleHttp\json_decode($content)->results[0]->formatted_address,
+      ];
+
+      $form['location']['#suffix'] = $this->t('Suggested formatted address: @address', $params);
+    }
 
     $this->actions($form, $form_state);
 

@@ -42,9 +42,9 @@ use Drupal\user\UserInterface;
  *   admin_permission = "administer InterestRoom entity",
  *   entity_keys = {},
  *   links = {
- *     "canonical" = "/admin/interest_room/{interest_room}",
- *     "edit-form" = "/admin/interest_room/{interest_room}/edit",
- *     "delete-form" = "/admin/interest_room/{interest_room}/delete"
+ *     "canonical" = "/admin/content/interest_room/{interest_room}",
+ *     "edit-form" = "/admin/content/interest_room/{interest_room}/edit",
+ *     "delete-form" = "/admin/content/interest_room/{interest_room}/delete"
  *   }
  * )
  */

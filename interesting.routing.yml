@@ -1,6 +1,6 @@
 # InterestRoom routing definition
 entity.interest_room.canonical:
-  path: '/admin/interest_room/{interest_room}'
+  path: '/admin/content/interest_room/{interest_room}'
   defaults:
     _entity_view: 'interest_room'
     _title: 'Interest room'
@@ -16,7 +16,7 @@ entity.interest_room.collection:
     _permission: 'view interest room entities'
 
 entity.interest_room.add_form:
-  path: '/admin/interest_room/add'
+  path: '/admin/content/interest_room/add'
   defaults:
     _entity_form: interest_room.add
     _title: 'Add Interest room'
@@ -24,7 +24,7 @@ entity.interest_room.add_form:
     _permission: 'add interest room entities'
 
 entity.interest_room.edit_form:
-  path: '/admin/interest_room/{interest_room}/edit'
+  path: '/admin/content/interest_room/{interest_room}/edit'
   defaults:
     _entity_form: interest_room.edit
     _title: 'Edit Interest room'
@@ -32,7 +32,7 @@ entity.interest_room.edit_form:
     _permission: 'edit interest room entities'
 
 entity.interest_room.delete_form:
-  path: '/admin/interest_room/{interest_room}/delete'
+  path: '/admin/content/interest_room/{interest_room}/delete'
   defaults:
     _entity_form: interest_room.delete
     _title: 'Delete Interest room'

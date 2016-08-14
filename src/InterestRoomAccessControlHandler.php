@@ -18,6 +18,7 @@ use Drupal\Core\Access\AccessResult;
  * @see \Drupal\interesting\Entity\InterestRoom.
  */
 class InterestRoomAccessControlHandler extends EntityAccessControlHandler {
+
   /**
    * {@inheritdoc}
    */
