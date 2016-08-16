@@ -26,7 +26,7 @@ use Drupal\user\UserInterface;
  *   id = "interest_room",
  *   label = @Translation("Interest room"),
  *   handlers = {
- *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
+ *     "view_builder" = "Drupal\interesting\InterestRoomViewBuilder",
  *     "list_builder" = "Drupal\interesting\InterestRoomListBuilder",
  *     "views_data" = "Drupal\interesting\Entity\InterestRoomViewsData",
  *     "storage" = "Drupal\rethinkdb\RethinkStorage",
@@ -63,40 +63,20 @@ class InterestRoom extends AbstractRethinkDbEntity {
   }
 
   /**
-   * {@inheritdoc}
+   * Get the address from the lat and lon of the entity.
+   *
+   * @return string
+   *   The formatted address of the geo location.
    */
-  public function getCreatedTime() {
-    return $this->get('created')->value;
-  }
+  public function getAddress() {
 
-  /**
-   * {@inheritdoc}
-   */
-  public function getOwner() {
-    return $this->get('user_id')->entity;
-  }
+    if (!$location = $this->location->getArrayCopy()) {
+      return;
+    }
 
-  /**
-   * {@inheritdoc}
-   */
-  public function getOwnerId() {
-    return $this->get('user_id')->target_id;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setOwnerId($uid) {
-    $this->set('user_id', $uid);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setOwner(UserInterface $account) {
-    $this->set('user_id', $account->id());
-    return $this;
+    $address = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' . $location['lat'] . ',' . $location['lon'] . '&sensor=true';
+    $content = \Drupal::httpClient()->get($address)->getBody()->getContents();
+    return \GuzzleHttp\json_decode($content)->results[0]->formatted_address;
   }
 
 }

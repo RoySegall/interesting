@@ -87,11 +87,8 @@ class InterestRoomForm extends ContentEntityForm {
 
     // Adding the address information.
     if ($location['lat'] && $location['lon']) {
-      $address = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' . $location['lat'] . ',' . $location['lon'] . '&sensor=true';
-      $content = \Drupal::httpClient()->get($address)->getBody()->getContents();
-
       $params = [
-        '@address' => \GuzzleHttp\json_decode($content)->results[0]->formatted_address,
+        '@address' => $entity->getAddress(),
       ];
 
       $form['location']['#suffix'] = $this->t('Suggested formatted address: @address', $params);

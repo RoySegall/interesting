@@ -45,7 +45,7 @@ class InterestRoomListBuilder extends EntityListBuilder {
     $row['name'] = $this->l(
       $entity->name,
       new Url(
-        'entity.interest_room.edit_form', array(
+        'entity.interest_room.canonical', array(
           'interest_room' => $entity->id(),
         )
       )
