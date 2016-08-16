@@ -10,6 +10,7 @@ namespace Drupal\interesting\Entity\Form;
 use Drupal\Core\Entity\ContentEntityForm;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\user\Entity\User;
 
 /**
  * Form controller for Interest room edit forms.
@@ -96,6 +97,21 @@ class InterestRoomForm extends ContentEntityForm {
       $form['location']['#suffix'] = $this->t('Suggested formatted address: @address', $params);
     }
 
+    $form['status'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Status'),
+      '#description' => $this->t('Determine if the room is on or not'),
+      '#default_value' => !empty($entity->values['status']),
+    ];
+
+    $form['user_id'] = [
+      '#title' => $this->t('Username'),
+      '#type' => 'entity_autocomplete',
+      '#target_type' => 'user',
+      '#required' => TRUE,
+      '#default_value' => User::load($entity->values['user_id']),
+    ];
+
     $this->actions($form, $form_state);
 
     return $form;
@@ -112,6 +128,8 @@ class InterestRoomForm extends ContentEntityForm {
       'lat' => $values['location']['lat'],
       'lon' => $values['location']['lon'],
     ];
+    $entity->status = $values['status'];
+    $entity->user_id = $values['user_id'];
   }
 
   /**
