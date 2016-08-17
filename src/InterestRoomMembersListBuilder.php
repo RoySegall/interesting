@@ -59,7 +59,7 @@ class InterestRoomMembersListBuilder extends EntityListBuilder {
     if ($entity->access('delete') && $entity->hasLinkTemplate('delete-form')) {
       $operations['delete'] = array(
         'title' => $this->t('Delete'),
-        'weight' => 100,
+        'weight' => 20,
         'url' => \Drupal\Core\Url::fromRoute('entity.interest_room_members.delete_form', [
           'interest_room' => $entity->room_id,
           'interest_room_members' => $entity->id(),
