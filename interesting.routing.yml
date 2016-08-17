@@ -38,3 +38,44 @@ entity.interest_room.delete_form:
     _title: 'Delete Interest room'
   requirements:
     _permission: 'delete interest room entities'
+
+# InterestRoomMembers routing definition
+entity.interest_room_members.canonical:
+  path: '/admin/interest_room_members/{interest_room_members}'
+  defaults:
+    _entity_view: 'interest_room_members'
+    _title: 'Interest room members'
+  requirements:
+    _entity_access: 'interest_room_members.view'
+
+entity.interest_room_members.collection:
+  path: '/admin/content/interest_room/{interest_room}/members'
+  defaults:
+    _entity_list: 'interest_room_members'
+    _title: 'Interest room members list'
+  requirements:
+    _permission: 'view interest room members entities'
+
+entity.interest_room_members.add_form:
+  path: '/admin/content/interest_room/{interest_room}/members/add'
+  defaults:
+    _entity_form: interest_room_members.add
+    _title: 'Add Interest room members'
+  requirements:
+    _permission: 'add interest room members entities'
+
+entity.interest_room_members.edit_form:
+  path: '/admin/content/interest_room/{interest_room}/members/{interest_room_members}/edit'
+  defaults:
+    _entity_form: interest_room_members.edit
+    _title: 'Edit Interest room members'
+  requirements:
+    _permission: 'edit interest room members entities'
+
+entity.interest_room_members.delete_form:
+  path: '/admin/content/interest_room/{interest_room}/members/{interest_room_members}/delete'
+  defaults:
+    _entity_form: interest_room_members.delete
+    _title: 'Delete Interest room members'
+  requirements:
+    _permission: 'delete interest room members entities'

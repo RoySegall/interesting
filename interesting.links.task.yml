@@ -20,3 +20,25 @@ entity.interest_room.delete_form:
   title: Delete
   weight: 10
 
+# Interest room members routing definition
+entity.interest_room_members.collection:
+  route_name: entity.interest_room_members.collection
+  base_route: entity.interest_room.canonical
+  title: 'Members'
+
+entity.interest_room_members.canonical:
+  route_name: entity.interest_room_members.canonical
+  base_route: entity.interest_room_members.canonical
+  title: 'View'
+
+entity.interest_room_members.edit_form:
+  route_name: entity.interest_room_members.edit_form
+  base_route: entity.interest_room_members.canonical
+  title: Edit
+
+entity.interest_room_members.delete_form:
+  route_name:  entity.interest_room_members.delete_form
+  base_route:  entity.interest_room_members.canonical
+  title: Delete
+  weight: 10
+
