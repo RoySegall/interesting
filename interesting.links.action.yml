@@ -8,4 +8,3 @@ entity.interest_room_members.add_form:
   title: 'Add Interest room members'
   appears_on:
     - entity.interest_room_members.collection
-
