@@ -2,10 +2,10 @@
 
 /**
  * @file
- * Contains Drupal\interesting\Entity\Form\InterestRoomDeleteForm.
+ * Contains Drupal\interesting\Form\InterestRoomDeleteForm.
  */
 
-namespace Drupal\interesting\Entity\Form;
+namespace Drupal\interesting\Form;
 
 use Drupal\Core\Entity\ContentEntityConfirmFormBase;
 use Drupal\Core\Form\FormStateInterface;

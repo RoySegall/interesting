@@ -2,10 +2,10 @@
 
 /**
  * @file
- * Contains Drupal\interesting\Entity\Form\InterestRoomSettingsForm.
+ * Contains Drupal\interesting\Form\InterestRoomSettingsForm.
  */
 
-namespace Drupal\interesting\Entity\Form;
+namespace Drupal\interesting\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
