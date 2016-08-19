@@ -25,9 +25,7 @@ use Drupal\user\UserInterface;
  *   id = "interest_room_messages",
  *   label = @Translation("Interest room messages"),
  *   handlers = {
- *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
  *     "list_builder" = "Drupal\interesting\InterestRoomMessagesListBuilder",
- *     "views_data" = "Drupal\interesting\Entity\InterestRoomMessagesViewsData",
  *     "storage" = "Drupal\rethinkdb\RethinkStorage",
  *     "form" = {
  *       "default" = "Drupal\interesting\Form\InterestRoomMessagesForm",
@@ -41,7 +39,7 @@ use Drupal\user\UserInterface;
  *   entity_keys = {},
  *   links = {
  *     "canonical" = "/admin/content/interest_room/{interest_room}/messages",
- *     "delete-form" = "/admin/content/interest_room/{interest_room}/{interest_room_messages}/delete"
+ *     "delete-form" = "/admin/content/interest_room/{interest_room}/messages/{interest_room_messages}/delete"
  *   }
  * )
  */

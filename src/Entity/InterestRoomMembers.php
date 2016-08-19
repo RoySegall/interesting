@@ -20,9 +20,7 @@ use Drupal\rethinkdb\Entity\AbstractRethinkDbEntity;
  *   id = "interest_room_members",
  *   label = @Translation("Interest room members"),
  *   handlers = {
- *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
  *     "list_builder" = "Drupal\interesting\InterestRoomMembersListBuilder",
- *     "views_data" = "Drupal\interesting\Entity\InterestRoomMembersViewsData",
  *     "storage" = "Drupal\rethinkdb\RethinkStorage",
  *     "form" = {
  *       "default" = "Drupal\interesting\Form\InterestRoomMembersForm",

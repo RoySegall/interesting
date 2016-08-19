@@ -14,10 +14,3 @@ entity.interest_room_messages.collection:
   title: 'Interest room messages list'
   route_name: entity.interest_room_messages.collection
   description: 'List Interest room messages entities'
-
-interest_room_messages.admin.structure.settings:
-  title: Interest room messages settings
-  description: 'Configure Interest room messages entities'
-  route_name: interest_room_messages.settings
-  parent: system.admin_structure
-

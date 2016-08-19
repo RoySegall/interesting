@@ -90,7 +90,7 @@ entity.interest_room_messages.canonical:
     _entity_access: 'interest_room_messages.view'
 
 entity.interest_room_messages.collection:
-  path: '/admin/interest_room_messages'
+  path: '/admin/content/interest_room/{interest_room}/messages'
   defaults:
     _entity_list: 'interest_room_messages'
     _title: 'Interest room messages list'
@@ -98,34 +98,17 @@ entity.interest_room_messages.collection:
     _permission: 'view interest room messages entities'
 
 entity.interest_room_messages.add_form:
-  path: '/admin/interest_room_messages/add'
+  path: '/admin/content/interest_room/{interest_room}/messages/add'
   defaults:
     _entity_form: interest_room_messages.add
     _title: 'Add Interest room messages'
   requirements:
     _permission: 'add interest room messages entities'
 
-entity.interest_room_messages.edit_form:
-  path: '/admin/interest_room_messages/{interest_room_messages}/edit'
-  defaults:
-    _entity_form: interest_room_messages.edit
-    _title: 'Edit Interest room messages'
-  requirements:
-    _permission: 'edit interest room messages entities'
-
 entity.interest_room_messages.delete_form:
-  path: '/admin/interest_room_messages/{interest_room_messages}/delete'
+  path: '/admin/content/interest_room/{interest_room}/messages/{interest_room_messages}/delete'
   defaults:
     _entity_form: interest_room_messages.delete
     _title: 'Delete Interest room messages'
   requirements:
     _permission: 'delete interest room messages entities'
-
-interest_room_messages.settings:
-  path: 'admin/structure/interest_room_messages'
-  defaults:
-   _form: '\Drupal\interesting\Form\InterestRoomMessagesSettingsForm'
-   _title: 'Interest room messages settings'
-  requirements:
-    _permission: 'administer interest room messages entities'
-

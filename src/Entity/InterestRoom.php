@@ -28,7 +28,6 @@ use Drupal\user\UserInterface;
  *   handlers = {
  *     "view_builder" = "Drupal\interesting\InterestRoomViewBuilder",
  *     "list_builder" = "Drupal\interesting\InterestRoomListBuilder",
- *     "views_data" = "Drupal\interesting\Entity\InterestRoomViewsData",
  *     "storage" = "Drupal\rethinkdb\RethinkStorage",
  *     "form" = {
  *       "default" = "Drupal\interesting\Form\InterestRoomForm",
