@@ -27,6 +27,7 @@ class InterestRoomMessagesListBuilder extends EntityListBuilder {
     $header['id'] = $this->t('Interest room messages ID');
     $header['name'] = $this->t('Name');
     $header['text'] = $this->t('Text');
+    $header['created_at'] = $this->t('Created at');
     return $header + parent::buildHeader();
   }
 
@@ -47,6 +48,7 @@ class InterestRoomMessagesListBuilder extends EntityListBuilder {
     $row['id'] = $entity->id();
     $row['name'] = $entity->getOwner()->toLink();
     $row['text'] = ['data' => $entity->text, 'text_format' => 'full_html'];
+    $row['created_at'] = \Drupal::service('date.formatter')->format($entity->created);
     return $row + parent::buildRow($entity);
   }
 

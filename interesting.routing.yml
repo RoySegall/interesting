@@ -64,14 +64,6 @@ entity.interest_room_members.add_form:
   requirements:
     _permission: 'add interest room members entities'
 
-entity.interest_room_members.edit_form:
-  path: '/admin/content/interest_room/{interest_room}/members/{interest_room_members}/edit'
-  defaults:
-    _entity_form: interest_room_members.edit
-    _title: 'Edit Interest room members'
-  requirements:
-    _permission: 'edit interest room members entities'
-
 entity.interest_room_members.delete_form:
   path: '/admin/content/interest_room_members/{interest_room_members}/delete'
   defaults:

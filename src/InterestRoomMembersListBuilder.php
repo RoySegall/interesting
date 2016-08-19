@@ -27,6 +27,7 @@ class InterestRoomMembersListBuilder extends EntityListBuilder {
   public function buildHeader() {
     $header['id'] = $this->t('Interest room members ID');
     $header['name'] = $this->t('Name');
+    $header['member_since'] = $this->t('Member since');
     return $header + parent::buildHeader();
   }
 
@@ -45,7 +46,8 @@ class InterestRoomMembersListBuilder extends EntityListBuilder {
   public function buildRow(EntityInterface $entity) {
     /* @var $entity \Drupal\interesting\Entity\InterestRoomMembers */
     $row['id'] = $entity->id();
-    $row['name'] = User::load($entity->user_id)->toLink();
+    $row['name'] = $entity->getOwner()->toLink();
+    $row['member_since'] = \Drupal::service('date.formatter')->format($entity->created);
     return $row + parent::buildRow($entity);
   }
 

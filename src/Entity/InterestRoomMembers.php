@@ -10,6 +10,7 @@ namespace Drupal\interesting\Entity;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\rethinkdb\Entity\AbstractRethinkDbEntity;
+use Drupal\user\UserInterface;
 
 /**
  * Defines the Interest room members entity.
@@ -52,6 +53,15 @@ class InterestRoomMembers extends AbstractRethinkDbEntity {
     $values += array(
       'user_id' => \Drupal::currentUser()->id(),
     );
+  }
+
+  /**
+   * Get the owner of the entity.
+   *
+   * @return UserInterface
+   */
+  public function getOwner() {
+    return $this->entityTypeManager()->getStorage('user')->load($this->user_id);
   }
 
 }
