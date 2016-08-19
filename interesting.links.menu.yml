@@ -3,14 +3,3 @@ entity.interest_room.collection:
   title: 'Interest room list'
   route_name: entity.interest_room.collection
   description: 'List Interest room entities'
-# Interest room members menu items definition
-entity.interest_room_members.collection:
-  title: 'Interest room members list'
-  route_name: entity.interest_room_members.collection
-  description: 'List Interest room members entities'
-
-# Interest room messages menu items definition
-entity.interest_room_messages.collection:
-  title: 'Interest room messages list'
-  route_name: entity.interest_room_messages.collection
-  description: 'List Interest room messages entities'
