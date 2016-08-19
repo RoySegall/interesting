@@ -28,3 +28,18 @@ edit interest room members entities:
 
 view interest room members entities:
   title: 'View Interest room members entities'
+add interest room messages entities:
+  title: 'Create new Interest room messages entities'
+
+administer interest room messages entities:
+  title: 'Administer Interest room messages entities'
+  description: 'Allow to access the administration form to configure Interest room messages entities.'
+
+delete interest room messages entities:
+  title: 'Delete Interest room messages entities'
+
+edit interest room messages entities:
+  title: 'Edit Interest room messages entities'
+
+view interest room messages entities:
+  title: 'View Interest room messages entities'

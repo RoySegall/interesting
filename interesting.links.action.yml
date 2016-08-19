@@ -8,3 +8,10 @@ entity.interest_room_members.add_form:
   title: 'Add Interest room members'
   appears_on:
     - entity.interest_room_members.collection
+entity.interest_room_messages.add_form:
+  route_name: entity.interest_room_messages.add_form
+  title: 'Add Interest room messages'
+  appears_on:
+    - entity.interest_room_messages.collection
+    - entity.interest_room_messages.canonical
+
