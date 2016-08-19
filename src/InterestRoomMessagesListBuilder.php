@@ -10,7 +10,6 @@ namespace Drupal\interesting;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityListBuilder;
 use Drupal\Core\Routing\LinkGeneratorTrait;
-use Drupal\Core\Url;
 
 /**
  * Defines a class to build a listing of Interest room messages entities.
@@ -49,6 +48,22 @@ class InterestRoomMessagesListBuilder extends EntityListBuilder {
     $row['name'] = $entity->getOwner()->toLink();
     $row['text'] = ['data' => $entity->text, 'text_format' => 'full_html'];
     return $row + parent::buildRow($entity);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function getEntityIds() {
+    $query = $this->getStorage()->getQuery()
+      ->sort('created')
+      ->condition('room_id', \Drupal::routeMatch()->getParameter('interest_room'));
+
+    // Only add the pager if a limit is specified.
+    if ($this->limit) {
+      $query->pager($this->limit);
+    }
+
+    return $query->execute();
   }
 
 }

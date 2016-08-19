@@ -10,7 +10,6 @@ namespace Drupal\interesting;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityListBuilder;
 use Drupal\Core\Routing\LinkGeneratorTrait;
-use Drupal\Core\Url;
 use Drupal\user\Entity\User;
 
 /**
@@ -53,21 +52,17 @@ class InterestRoomMembersListBuilder extends EntityListBuilder {
   /**
    * {@inheritdoc}
    */
-  protected function getDefaultOperations(EntityInterface $entity) {
+  protected function getEntityIds() {
+    $query = $this->getStorage()->getQuery()
+      ->sort('created')
+      ->condition('room_id', \Drupal::routeMatch()->getParameter('interest_room'));
 
-    $operations = array();
-    if ($entity->access('delete') && $entity->hasLinkTemplate('delete-form')) {
-      $operations['delete'] = array(
-        'title' => $this->t('Delete'),
-        'weight' => 20,
-        'url' => \Drupal\Core\Url::fromRoute('entity.interest_room_members.delete_form', [
-          'interest_room' => $entity->room_id,
-          'interest_room_members' => $entity->id(),
-        ]),
-      );
+    // Only add the pager if a limit is specified.
+    if ($this->limit) {
+      $query->pager($this->limit);
     }
 
-    return $operations;
+    return $query->execute();
   }
 
 }
