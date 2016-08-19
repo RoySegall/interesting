@@ -8,14 +8,8 @@
 namespace Drupal\interesting\Entity;
 
 use Drupal\Core\Entity\EntityStorageInterface;
-use Drupal\Core\Field\BaseFieldDefinition;
-use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\EntityChangedTrait;
-use Drupal\Core\Entity\EntityTypeInterface;
-use Drupal\interesting\InterestRoomInterface;
 use Drupal\rethinkdb\Entity\AbstractRethinkDbEntity;
-use Drupal\rethinkdb_websocket\Controller\RethinkDBMessage;
-use Drupal\user\UserInterface;
 
 /**
  * Defines the Interest room entity.
@@ -28,7 +22,6 @@ use Drupal\user\UserInterface;
  *   handlers = {
  *     "view_builder" = "Drupal\interesting\InterestRoomViewBuilder",
  *     "list_builder" = "Drupal\interesting\InterestRoomListBuilder",
- *     "views_data" = "Drupal\interesting\Entity\InterestRoomViewsData",
  *     "storage" = "Drupal\rethinkdb\RethinkStorage",
  *     "form" = {
  *       "default" = "Drupal\interesting\Form\InterestRoomForm",

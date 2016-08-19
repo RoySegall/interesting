@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Contains Drupal\interesting\InterestRoomMembersListBuilder.
+ * Contains Drupal\interesting\InterestRoomMessagesListBuilder.
  */
 
 namespace Drupal\interesting;
@@ -10,14 +10,13 @@ namespace Drupal\interesting;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityListBuilder;
 use Drupal\Core\Routing\LinkGeneratorTrait;
-use Drupal\user\Entity\User;
 
 /**
- * Defines a class to build a listing of Interest room members entities.
+ * Defines a class to build a listing of Interest room messages entities.
  *
  * @ingroup interesting
  */
-class InterestRoomMembersListBuilder extends EntityListBuilder {
+class InterestRoomMessagesListBuilder extends EntityListBuilder {
 
   use LinkGeneratorTrait;
 
@@ -25,9 +24,10 @@ class InterestRoomMembersListBuilder extends EntityListBuilder {
    * {@inheritdoc}
    */
   public function buildHeader() {
-    $header['id'] = $this->t('Interest room members ID');
+    $header['id'] = $this->t('Interest room messages ID');
     $header['name'] = $this->t('Name');
-    $header['member_since'] = $this->t('Member since');
+    $header['text'] = $this->t('Text');
+    $header['created_at'] = $this->t('Created at');
     return $header + parent::buildHeader();
   }
 
@@ -44,10 +44,11 @@ class InterestRoomMembersListBuilder extends EntityListBuilder {
    * {@inheritdoc}
    */
   public function buildRow(EntityInterface $entity) {
-    /* @var $entity \Drupal\interesting\Entity\InterestRoomMembers */
+    /* @var $entity \Drupal\interesting\Entity\InterestRoomMessages */
     $row['id'] = $entity->id();
     $row['name'] = $entity->getOwner()->toLink();
-    $row['member_since'] = \Drupal::service('date.formatter')->format($entity->created);
+    $row['text'] = ['data' => ['#markup' => $entity->text]];
+    $row['created_at'] = \Drupal::service('date.formatter')->format($entity->created);
     return $row + parent::buildRow($entity);
   }
 

@@ -10,6 +10,7 @@ namespace Drupal\interesting\Entity;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\rethinkdb\Entity\AbstractRethinkDbEntity;
+use Drupal\user\UserInterface;
 
 /**
  * Defines the Interest room members entity.
@@ -20,9 +21,7 @@ use Drupal\rethinkdb\Entity\AbstractRethinkDbEntity;
  *   id = "interest_room_members",
  *   label = @Translation("Interest room members"),
  *   handlers = {
- *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
  *     "list_builder" = "Drupal\interesting\InterestRoomMembersListBuilder",
- *     "views_data" = "Drupal\interesting\Entity\InterestRoomMembersViewsData",
  *     "storage" = "Drupal\rethinkdb\RethinkStorage",
  *     "form" = {
  *       "default" = "Drupal\interesting\Form\InterestRoomMembersForm",
@@ -38,7 +37,7 @@ use Drupal\rethinkdb\Entity\AbstractRethinkDbEntity;
  *   },
  *   links = {
  *     "canonical" = "/admin/content/interest_room/{interest_room}/members",
- *     "delete-form" = "/admin/content/interest_room/{interest_room}/members/{interest_room_members}/delete"
+ *     "delete-form" = "/admin/content/interest_room_members/{interest_room_members}/delete"
  *   }
  * )
  */
@@ -54,6 +53,15 @@ class InterestRoomMembers extends AbstractRethinkDbEntity {
     $values += array(
       'user_id' => \Drupal::currentUser()->id(),
     );
+  }
+
+  /**
+   * Get the owner of the entity.
+   *
+   * @return UserInterface
+   */
+  public function getOwner() {
+    return $this->entityTypeManager()->getStorage('user')->load($this->user_id);
   }
 
 }
