@@ -98,7 +98,7 @@ class InterestRoomForm extends ContentEntityForm {
       '#type' => 'checkbox',
       '#title' => $this->t('Status'),
       '#description' => $this->t('Determine if the room is on or not'),
-      '#default_value' => !empty($entity->values['status']),
+      '#default_value' => isset($entity->values['status']) ? $entity->values['status'] : TRUE,
     ];
 
     $form['user_id'] = [
