@@ -111,7 +111,7 @@ class InterestingRest extends ControllerBase {
     ])->save();
 
     $result = \Drupal::entityQuery('access_token')
-      ->condition('auth_user_id', 6)
+      ->condition('auth_user_id', $account->id())
       ->condition('resource', 'authentication')
       ->execute();
 
