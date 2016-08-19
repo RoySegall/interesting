@@ -3,3 +3,8 @@ entity.interest_room.add_form:
   title: 'Add Interest room'
   appears_on:
     - entity.interest_room.collection
+entity.interest_room_members.add_form:
+  route_name: entity.interest_room_members.add_form
+  title: 'Add Interest room members'
+  appears_on:
+    - entity.interest_room_members.collection

@@ -11,6 +11,7 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityListBuilder;
 use Drupal\Core\Routing\LinkGeneratorTrait;
 use Drupal\Core\Url;
+use Symfony\Component\Routing\Generator\UrlGenerator;
 
 /**
  * Defines a class to build a listing of Interest room entities.
@@ -30,6 +31,9 @@ class InterestRoomListBuilder extends EntityListBuilder {
     return $header + parent::buildHeader();
   }
 
+  /**
+   * {@inheritdoc}
+   */
   public function load() {
     // todo - fix rethink DB to just return ids.
     $entity = $this->getEntityIds();
