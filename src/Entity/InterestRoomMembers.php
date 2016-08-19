@@ -36,7 +36,7 @@ use Drupal\rethinkdb\Entity\AbstractRethinkDbEntity;
  *   },
  *   links = {
  *     "canonical" = "/admin/content/interest_room/{interest_room}/members",
- *     "delete-form" = "/admin/content/interest_room/{interest_room}/members/{interest_room_members}/delete"
+ *     "delete-form" = "/admin/content/interest_room_members/{interest_room_members}/delete"
  *   }
  * )
  */

@@ -28,7 +28,10 @@ class InterestRoomMessagesDeleteForm extends ContentEntityConfirmFormBase {
    * {@inheritdoc}
    */
   public function getCancelUrl() {
-    return new Url('entity.interest_room_messages.collection');
+    return new Url('entity.interest_room_messages.collection', [
+      'interest_room' => $this->entity->room_id,
+      'interest_room_members' => $this->entity->id(),
+    ]);
   }
 
   /**

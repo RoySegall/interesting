@@ -73,7 +73,7 @@ entity.interest_room_members.edit_form:
     _permission: 'edit interest room members entities'
 
 entity.interest_room_members.delete_form:
-  path: '/admin/content/interest_room/{interest_room}/members/{interest_room_members}/delete'
+  path: '/admin/content/interest_room_members/{interest_room_members}/delete'
   defaults:
     _entity_form: interest_room_members.delete
     _title: 'Delete Interest room members'
@@ -81,14 +81,6 @@ entity.interest_room_members.delete_form:
     _permission: 'delete interest room members entities'
 
 # InterestRoomMessages routing definition
-entity.interest_room_messages.canonical:
-  path: '/admin/interest_room_messages/{interest_room_messages}'
-  defaults:
-    _entity_view: 'interest_room_messages'
-    _title: 'Interest room messages'
-  requirements:
-    _entity_access: 'interest_room_messages.view'
-
 entity.interest_room_messages.collection:
   path: '/admin/content/interest_room/{interest_room}/messages'
   defaults:
@@ -106,7 +98,7 @@ entity.interest_room_messages.add_form:
     _permission: 'add interest room messages entities'
 
 entity.interest_room_messages.delete_form:
-  path: '/admin/content/interest_room/{interest_room}/messages/{interest_room_messages}/delete'
+  path: '/admin/content/interest_room_messages/{interest_room_messages}/delete'
   defaults:
     _entity_form: interest_room_messages.delete
     _title: 'Delete Interest room messages'

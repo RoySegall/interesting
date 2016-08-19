@@ -8,11 +8,7 @@
 namespace Drupal\interesting\Entity;
 
 use Drupal\Core\Entity\EntityStorageInterface;
-use Drupal\Core\Field\BaseFieldDefinition;
-use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\EntityChangedTrait;
-use Drupal\Core\Entity\EntityTypeInterface;
-use Drupal\interesting\InterestRoomMessagesInterface;
 use Drupal\rethinkdb\Entity\AbstractRethinkDbEntity;
 use Drupal\user\UserInterface;
 
@@ -39,7 +35,7 @@ use Drupal\user\UserInterface;
  *   entity_keys = {},
  *   links = {
  *     "canonical" = "/admin/content/interest_room/{interest_room}/messages",
- *     "delete-form" = "/admin/content/interest_room/{interest_room}/messages/{interest_room_messages}/delete"
+ *     "delete-form" = "/admin/content/interest_room_messages/{interest_room_messages}/delete"
  *   }
  * )
  */
@@ -55,6 +51,15 @@ class InterestRoomMessages extends AbstractRethinkDbEntity {
     $values += array(
       'user_id' => \Drupal::currentUser()->id(),
     );
+  }
+
+  /**
+   * Get the owner of the entity.
+   *
+   * @return UserInterface
+   */
+  public function getOwner() {
+    return $this->entityTypeManager()->getStorage('user')->load($this->user_id);
   }
 
 }

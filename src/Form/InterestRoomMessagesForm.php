@@ -8,8 +8,11 @@
 namespace Drupal\interesting\Form;
 
 use Drupal\Core\Entity\ContentEntityForm;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\Language;
+use Drupal\interesting\Entity\InterestRoom;
+use Drupal\user\Entity\User;
 
 /**
  * Form controller for Interest room messages edit forms.
@@ -17,54 +20,60 @@ use Drupal\Core\Language\Language;
  * @ingroup interesting
  */
 class InterestRoomMessagesForm extends ContentEntityForm {
+
   /**
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     /* @var $entity \Drupal\interesting\Entity\InterestRoomMessages */
     $form = parent::buildForm($form, $form_state);
-    $entity = $this->entity;
 
-    $form['langcode'] = array(
-      '#title' => $this->t('Language'),
-      '#type' => 'language_select',
-      '#default_value' => $entity->getUntranslated()->language()->getId(),
-      '#languages' => Language::STATE_ALL,
-    );
+    $form['message'] = [
+      '#type' => 'text_format',
+      '#title' => $this->t('Text'),
+    ];
+
+    $form['user_id'] = [
+      '#title' => $this->t('Username'),
+      '#type' => 'entity_autocomplete',
+      '#target_type' => 'user',
+      '#required' => TRUE,
+      '#default_value' => User::load(\Drupal::currentUser()->getAccount()->id()),
+    ];
 
     return $form;
   }
 
   /**
+   * Get the room object from the route object.
+   *
+   * @return InterestRoom
+   */
+  protected function getRoom() {
+    $id = \Drupal::routeMatch()->getParameter('interest_room');
+    return InterestRoom::load($id);
+  }
+
+  /**
    * {@inheritdoc}
    */
-  public function submit(array $form, FormStateInterface $form_state) {
-    // Build the entity object from the submitted values.
-    $entity = parent::submit($form, $form_state);
-
-    return $entity;
+  public function copyFormValuesToEntity(EntityInterface $entity, array $form, FormStateInterface $form_state) {
+    $values = $form_state->getValues();
+    $entity->user_id = $values['user_id'];
+    $entity->room_id = $this->getRoom()->id();
+    $entity->created = time();
+    $entity->text = $values['message']['value'];
   }
 
   /**
    * {@inheritdoc}
    */
   public function save(array $form, FormStateInterface $form_state) {
-    $entity = $this->entity;
-    $status = $entity->save();
+    $this->entity->save();
 
-    switch ($status) {
-      case SAVED_NEW:
-        drupal_set_message($this->t('Created the %label Interest room messages.', [
-          '%label' => $entity->label(),
-        ]));
-        break;
-
-      default:
-        drupal_set_message($this->t('Saved the %label Interest room messages.', [
-          '%label' => $entity->label(),
-        ]));
-    }
-    $form_state->setRedirect('entity.interest_room_messages.edit_form', ['interest_room_messages' => $entity->id()]);
+    $form_state->setRedirect('entity.interest_room_messages.collection', [
+      'interest_room' => $this->entity->room_id,
+    ]);
   }
 
 }
