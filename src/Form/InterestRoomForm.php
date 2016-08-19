@@ -157,21 +157,7 @@ class InterestRoomForm extends ContentEntityForm {
    * {@inheritdoc}
    */
   public function save(array $form, FormStateInterface $form_state) {
-    $entity = $this->entity;
-    $status = $entity->save();
-
-    switch ($status) {
-      case SAVED_NEW:
-        drupal_set_message($this->t('Created the %label Interest room.', [
-          '%label' => $entity->label(),
-        ]));
-        break;
-
-      default:
-        drupal_set_message($this->t('Saved the %label Interest room.', [
-          '%label' => $entity->label(),
-        ]));
-    }
+    $entity = $this->entity->save();
     $form_state->setRedirect('entity.interest_room.edit_form', ['interest_room' => $entity->id()]);
   }
 
