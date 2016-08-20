@@ -67,8 +67,9 @@ class InterestingRest extends ControllerBase {
    *
    * @param Request $request
    *   The request end object.
-   *
+   * 
    * @return Json
+   * @throws \Exception
    */
   public function api(Request $request) {
     $this->request = $request;
@@ -80,6 +81,8 @@ class InterestingRest extends ControllerBase {
       case 'GET':
         return $this->get();
     }
+
+    throw new \Exception('The method ' . $request->getMethod() . ' is not supported by this end point.');
   }
 
   /**
