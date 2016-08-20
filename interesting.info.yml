@@ -6,3 +6,4 @@ package: Interesting
 dependencies:
   - geofield
   - rethinkdb
+  - simple_oauth

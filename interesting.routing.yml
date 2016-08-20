@@ -96,3 +96,10 @@ entity.interest_room_messages.delete_form:
     _title: 'Delete Interest room messages'
   requirements:
     _permission: 'delete interest room messages entities'
+
+interesting.interesting_rest_create:
+  path: '/api/user'
+  defaults:
+    _controller: '\Drupal\interesting\Controller\InterestingRest::api'
+  requirements:
+    _access: 'TRUE'
