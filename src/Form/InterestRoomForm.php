@@ -135,7 +135,8 @@ class InterestRoomForm extends ContentEntityForm {
   public function validateForm(array &$form, FormStateInterface $form_state) {
     $entity = $this->buildEntity($form, $form_state);
 
-    $entity->validate();
+    // No need to validate for now.
+//    $entity->validate();
 
     // The entity was validated.
     $entity->setValidationRequired(FALSE);

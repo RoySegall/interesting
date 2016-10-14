@@ -33,15 +33,6 @@ class InterestRoomListBuilder extends EntityListBuilder {
   /**
    * {@inheritdoc}
    */
-  public function load() {
-    // todo - fix rethink DB to just return ids.
-    $entity = $this->getEntityIds();
-    return $this->storage->loadMultiple(array_keys($entity));
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function buildRow(EntityInterface $entity) {
     /* @var $entity \Drupal\interesting\Entity\InterestRoom */
     $row['id'] = $entity->id();

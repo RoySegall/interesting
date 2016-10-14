@@ -70,6 +70,7 @@ class InterestRoomMembersForm extends ContentEntityForm {
       // Check if the user is already in the room.
       $result = \Drupal::entityQuery('interest_room_members')
         ->condition('room_id', $this->getRoom()->id())
+        ->condition('user_id', $form_state->getValue('user_id'))
         ->execute();
 
       if ($result) {
@@ -77,7 +78,7 @@ class InterestRoomMembersForm extends ContentEntityForm {
       }
     }
 
-    $entity->validate();
+//    $entity->validate();
 
     // The entity was validated.
     $entity->setValidationRequired(FALSE);

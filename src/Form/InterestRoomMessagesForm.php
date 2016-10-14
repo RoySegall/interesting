@@ -54,6 +54,16 @@ class InterestRoomMessagesForm extends ContentEntityForm {
     return InterestRoom::load($id);
   }
 
+  public function validateForm(array &$form, FormStateInterface $form_state) {
+    $entity = $this->buildEntity($form, $form_state);
+
+    // The entity was validated.
+    $entity->setValidationRequired(FALSE);
+    $form_state->setTemporaryValue('entity_validated', TRUE);
+
+    return $entity;
+  }
+
   /**
    * {@inheritdoc}
    */
